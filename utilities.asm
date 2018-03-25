@@ -1,4 +1,5 @@
-[BITS 16]
+[BITS 16] 
+; 以下的global是必要的
 global clear_screen
 global hello_hybrid_programming
 global my_add
