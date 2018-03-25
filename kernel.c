@@ -4,7 +4,8 @@ __asm__("mov $0, %eax\n");
 __asm__("mov %ax, %ds\n");
 __asm__("mov %ax, %es\n");
 __asm__("jmpl $0, $main\n");
-
+// 上面这段内嵌的汇编代码很重要。其中的jmpl 指令，能把
+// 程序引向正确的执行入口。
 #include "utilities.h"
 int main() {
     clear_screen(); // 清屏

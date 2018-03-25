@@ -8,7 +8,7 @@ _start:
 
     mov cl, 2
     mov bx, kernel_address
-.load_kernel: ; 将操作系统载入到内存A100处
+.load_kernel: ; 将操作系统内核载入到内存A100处
     mov ax, 0
     mov es, ax ; which segment to load
     mov ah, 2 ; function number
@@ -17,7 +17,7 @@ _start:
     mov ch, 0 
     int 13H 
 .jmp2kernel:
-    jmp bx
+    jmp bx ; 直接跳转到操作系统内核
     hlt
 
 times 510-($-$$) db 0

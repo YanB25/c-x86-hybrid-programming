@@ -1,8 +1,6 @@
 # Linux下C和汇编混编方式
-请求各位完善这份文档，为未来的学弟学妹带来帮助。  
-关于完善这份文档见contribution guide。  
+loader.asm是引导程序。kernel.c是操作系统内核程序。loader.asm会跳转到kernel.c执行。kernel.c会调用汇编的函数，汇编的函数见utilities.h和utilities.asm。  
 [toc]
-
 ## 工具链
 - GCC  
 用于编译C代码,生成目标文件
