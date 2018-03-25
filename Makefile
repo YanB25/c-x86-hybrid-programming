@@ -8,15 +8,15 @@ ASFLAGS=
 all: kernel.bin loader.bin
 
 kernel.bin: kernel.o utilities.o
-	$(LD) $(LDFLAGS) -Ttext 0xA100 --oformat binary -o $@ $^
+	ld $(LDFLAGS) -Ttext 0xA100 --oformat binary -o $@ $^
 kernel.o: kernel.c utilities.h
-	$(CC) $(CCFLAGS) -c $^
+	gcc $(CCFLAGS) -c $^
 utilities.o: utilities.asm
-	$(AS) $(ASFLAGS) -f elf32 -o $@ $^
+	nasm $(ASFLAGS) -f elf32 -o $@ $^
 loader.o: loader.asm
-	$(AS) $(ASFLAGS) -f elf32 -o $@ $^
+	nasm $(ASFLAGS) -f elf32 -o $@ $^
 loader.bin: loader.o
-	$(LD) $(LDFLAGS) -Ttext 0x7c00 --oformat binary -o $@ $^
+	ld $(LDFLAGS) -Ttext 0x7c00 --oformat binary -o $@ $^
 
 build:
 	dd if=loader.bin of=OS.img conv=notrunc
