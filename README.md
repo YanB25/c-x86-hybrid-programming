@@ -1,5 +1,8 @@
 # Linux下C和汇编混编方式
+请求各位完善这份文档，为未来的学弟学妹带来帮助。  
+关于完善这份文档见contribution guide。  
 [toc]
+
 ## 工具链
 - GCC  
 用于编译C代码,生成目标文件
@@ -153,3 +156,17 @@ $ dd if=kernel.bin of=OS.img conv=notrunc oflag=seek_bytes seek=512
 ``` sh
 $ bochs
 ```
+
+## Contribution guide
+1. 有新的修改可以pull request或私戳我拉collaborator.
+1. 请求所有TODO能得到完善
+在readme内搜索TODO即可找到todo内容。
+1. 不确定的地方随意增加新的todo
+每个TODO后请指出TODO列出者的名称，例如
+    ``` markdown
+    TODO:(YB) 这里的xxxx我不太确定
+    ```
+1. keep it simple
+这份代码应该尽可能简单但能阐述清楚问题。  
+1. keep it correct
+每次修改后保证代码能正确运行。  
