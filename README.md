@@ -12,6 +12,18 @@ linux下自带的链接工具。
 - bochs
 虚拟机
 
+## Usage guide
+编译和运行的方法
+``` sh
+# 清空所有的生成文件
+make clean
+# 编译生成所有需要的文件
+make
+# 将生成的文件写入到虚拟软盘中
+make build
+# 运行bochs虚拟机，执行OS.img中的代码
+make run
+```
 # 混编方式
 ## 引导程序
 引导程序如`loader.asm`所示．　　
@@ -39,13 +51,13 @@ __asm__("jmpl $0, $main\n");
 ```
 其中，`__asm__()`用于嵌入汇编代码．汇编代码以字符串的形式嵌入，并采用AT&T格式书写．注意每个字符串末尾的`\n`不可缺少．  
 
-`.globl _start`和`_start:`只是为了让连接器知道程序的入口地址在哪．去掉这两句，连接器会默认入口地址在开头．去掉这两句后不影响程序的运行，但连接器会报出Warning.
+`.globl _start`和`_start:`只是为了让连接器知道程序的入口地址在哪．去掉这两句，连接器会默认入口地址在开头．去掉这两句后不影响程序的运行，但连接器会报出Warning.  
 
-//TODO: （YB）上面这段话中，＂让连接器知道程序入口地址在哪＂的正确性待定．不加这两句，程序的确可以正确运行，但到底有何不同待定．
+//TODO: （YB）上面这段话中，＂让连接器知道程序入口地址在哪＂的正确性待定．不加这两句，程序的确可以正确运行，但到底有何不同待定．  
 
-`jmpl $0, $main`将把程序的控制权跳到`kernel.c`中的`main`函数．具体请见AT&T的语法．
+`jmpl $0, $main`将把程序的控制权跳到`kernel.c`中的`main`函数．具体请见AT&T的语法．  
 
-在`main`函数中，仅有以下的代码
+在`main`函数中，仅有以下的代码  
 ```c
 int main() {
     clear_screen();
@@ -54,9 +66,9 @@ int main() {
     return 0;
 }
 ```
-其中`while(1) {}`相当于`jmp $`　　
-`clear_screen()`将清屏　　
-`hello_hybrid_programming()`将于屏幕上输出一个字符串．　　
+其中`while(1) {}`相当于`jmp $`  
+`clear_screen()`将清屏  
+`hello_hybrid_programming()`将于屏幕上输出一个字符串.  
 
 **这两个函数的声明(prototype)在utilities.h中．由于kernel.c 包含了utilities.h，故能保证编译通过．但这两个函数的定义（函数体）在汇编代码utilities.asm中书写，最终通过连接器链接在一起**．
 
@@ -89,17 +101,6 @@ gcc 在传参时默认做提升（见gcc文档），参数都被看作32位。 �
 
 ## 编译方式
 对`makefile`比较了解的同学，可以直接阅读`Makefile`文件。  
-### 本demo编译方式
-``` sh
-# 清空所有的生成文件
-make clean
-# 编译生成所有需要的文件
-make
-# 将生成的文件写入到虚拟软盘中
-make build
-# 运行bochs虚拟机，执行OS.img中的代码
-make run
-```
 ### GCC 编译指令
 ``` sh
 gcc -march=i386 -m16 -mpreferred-stack-boundary=2 -ffreestanding -c kernel.c
@@ -124,9 +125,9 @@ GCC在编译时使用“自立”的环境。即，不使用任何标准库，�
 链接后最终产生二进制文件。该步能保证链接后产生的文件没有文件头。
 注意：若产生的文件有文件头，本项目将无法运行。见以上关于“引导程序”的描述。
 - `-N`
-TODO:(YB) 待补充。
+TODO:(YB) 待补充。  
 - `-Ttext 0x7c00`
 让Text段起始于0x7c00  
 例如，`loader.asm`文件中，`global _start`使得`org`指令不合法
-。此时关于偏移的计算不应再交由NASM完成，而应交由链接器完成。故此处明确告知链接器，起始地点为`0x7c00`
+。此时关于偏移的计算不应再交由NASM完成，而应交由链接器完成。故此处明确告知链接器，起始地点为`0x7c00`  
 TODO:(yb)此处需要更多的补充。新开一个section谈谈链接和地址的问题？
