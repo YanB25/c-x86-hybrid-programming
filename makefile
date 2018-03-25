@@ -28,7 +28,7 @@ loader.bin: loader.o
 
 build:
 	$(DD) if=loader.bin of=OS.img conv=notrunc
-	$(DD) if=kernel.bin of=OS.img conv=notrunc oflag=seek_bytes seek=512
+	$(DD) if=kernel.bin of=OS.img conv=notrunc bs=512 seek=1
 clean:
 	-rm *.bin -f 
 	-rm *.o -f 
@@ -36,3 +36,9 @@ clean:
 	-rm bochsout.txt
 run:
 	$(BOCHS) -q
+
+auto:
+	make clean
+	make all
+	make build
+	make run
