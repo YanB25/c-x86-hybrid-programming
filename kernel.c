@@ -3,7 +3,7 @@ __asm__("_start:\n");
 __asm__("mov $0, %eax\n");
 __asm__("mov %ax, %ds\n");
 __asm__("mov %ax, %es\n");
-__asm__("jmpl $0, $main\n");
+__asm__("jmpl $0, $_main\n");
 
 #include "utilities.h"
 int main() {
