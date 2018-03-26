@@ -1,26 +1,45 @@
-LDFLAGS=-melf_i386 -N
+LD=./env/bin/i686-elf-ld.exe
+CC=./env/bin/i686-elf-gcc.exe
+NASM=./bin/nasm.exe
+DD=./bin/dd.exe
+BOCHS=./bin/bochs.exe
+# LD=ld
+# CC=gcc
+# NASM=nasm
+# DD=dd
+# BOCHS=bochs
+
+LDFLAGS=-m elf_i386
 CCFLAGS=-march=i386 -m16 -mpreferred-stack-boundary=2 -ffreestanding
 ASFLAGS=
 
-all: kernel.bin loader.bin
+all: kernel.bin loader.bin kernel.o utilities.o  loader.o
 
 kernel.bin: kernel.o utilities.o
-	ld $(LDFLAGS) -Ttext 0xA100 --oformat binary -o $@ $^
+	$(LD) $(LDFLAGS) -Ttext 0xA100 --oformat binary -o $@ $^
 kernel.o: kernel.c utilities.h
-	gcc $(CCFLAGS) -c $^
+	$(CC) $(CCFLAGS) -o kernel.o -c kernel.c
 utilities.o: utilities.asm
-	nasm $(ASFLAGS) -f elf32 -o $@ $^
+	$(NASM) $(ASFLAGS) -f elf32 -o $@ $^
 loader.o: loader.asm
-	nasm $(ASFLAGS) -f elf32 -o $@ $^
+	$(NASM) $(ASFLAGS) -f elf32 -o $@ $^
 loader.bin: loader.o
-	ld $(LDFLAGS) -Ttext 0x7c00 --oformat binary -o $@ $^
-
+	$(LD) $(LDFLAGS) -Ttext 0x7c00 --oformat binary -o $@ $^
 build:
-	dd if=loader.bin of=OS.img conv=notrunc
-	dd if=kernel.bin of=OS.img conv=notrunc oflag=seek_bytes seek=512
+	$(DD) if=loader.bin of=OS.img conv=notrunc
+	$(DD) if=kernel.bin of=OS.img conv=notrunc bs=512 seek=1
 clean:
-	rm *.bin -f 
-	rm *.o -f 
-	rm *.gch -f
+	-del *.bin
+	-del *.o
+	-del *.gch
+	-del bochsout.txt
 run:
-	bochs -q
+	$(BOCHS) -q
+
+auto:
+	make clean
+	make all
+	make build
+	make run
+
+# 不知道为什么，这个rm一直不行
