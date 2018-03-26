@@ -33,7 +33,7 @@
 00000000000i[      ]   Sound support: SB16 ES1370
 00000000000i[      ]   USB support: UHCI OHCI EHCI xHCI
 00000000000i[      ]   VGA extension support: vbe cirrus voodoo
-00000000000i[MEM0  ] allocated memory at 068D6020. after alignment, vector=068D7000
+00000000000i[MEM0  ] allocated memory at 05FC3020. after alignment, vector=05FC4000
 00000000000i[MEM0  ] 32.00MB
 00000000000i[MEM0  ] mem block size = 0x00020000, blocks=256
 00000000000i[MEM0  ] rom at 0xfffe0000/131072 ('./dependence/BIOS-bochs-latest')
@@ -44,7 +44,7 @@
 00000000000i[DEV   ] PIIX3 PCI-to-ISA bridge present at device 1, function 0
 00000000000i[PLUGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS  ] Using local time for initial clock
-00000000000i[CMOS  ] Setting initial clock to: Sun Mar 25 21:59:47 2018 (time0=1521986387)
+00000000000i[CMOS  ] Setting initial clock to: Mon Mar 26 16:24:25 2018 (time0=1522052665)
 00000000000i[PLUGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA   ] channel 4 used by cascade
 00000000000i[PLUGIN] init_dev of 'pic' plugin device by virtual method
@@ -157,3 +157,25 @@
 00000331733i[BIOS  ] ram_size=0x02000000
 00000332189i[BIOS  ] ram_end=32MB
 00000506252i[WINGUI] dimension update x=720 y=400 fontheight=16 fontwidth=9 bpp=8
+00031965000p[WINGUI] >>PANIC<< POWER button turned off.
+00031965000i[CPU0  ] CPU is in protected mode (active)
+00031965000i[CPU0  ] CS.mode = 32 bit
+00031965000i[CPU0  ] SS.mode = 32 bit
+00031965000i[CPU0  ] EFER   = 0x00000000
+00031965000i[CPU0  ] | EAX=00000000  EBX=00000000  ECX=00000031  EDX=00000061
+00031965000i[CPU0  ] | ESP=0009fb90  EBP=00000000  ESI=00000007  EDI=000004b2
+00031965000i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf zf af pf cf
+00031965000i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
+00031965000i[CPU0  ] |  CS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00031965000i[CPU0  ] |  DS:0018( 0003| 0|  0) 00000000 ffffffff 1 1
+00031965000i[CPU0  ] |  SS:0018( 0003| 0|  0) 00000000 ffffffff 1 1
+00031965000i[CPU0  ] |  ES:0018( 0003| 0|  0) 00000000 ffffffff 1 1
+00031965000i[CPU0  ] |  FS:0000( 0000| 0|  0) 00000000 00000000 0 0
+00031965000i[CPU0  ] |  GS:0000( 0000| 0|  0) 00000000 00000000 0 0
+00031965000i[CPU0  ] | EIP=000e17b8 (000e17b8)
+00031965000i[CPU0  ] | CR0=0x60000011 CR2=0x00000000
+00031965000i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
+00031965000i[CPU0  ] 0x00000000000e17b8>> mov ebx, eax : 89C3
+00031965000i[CMOS  ] Last time is 1522052667 (Mon Mar 26 16:24:27 2018)
+00031965000i[      ] restoring default signal behavior
+00031965000i[SIM   ] quit_sim called with exit code 1

@@ -29,10 +29,10 @@ build:
 	$(DD) if=loader.bin of=OS.img conv=notrunc
 	$(DD) if=kernel.bin of=OS.img conv=notrunc bs=512 seek=1
 clean:
-	-rm *.bin
-	-rm *.o
-	-rm *.gch
-	-rm bochsout.txt
+	-del *.bin
+	-del *.o
+	-del *.gch
+	-del bochsout.txt
 run:
 	$(BOCHS) -q
 
