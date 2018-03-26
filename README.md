@@ -2,7 +2,7 @@
 请求各位完善这份文档，为未来的学弟学妹带来帮助。  
 关于完善这份文档见contribution guide。  
 [toc]
-
+关于Windows下的混编方法，见下Windows小节  
 ## 工具链
 - GCC  
 用于编译C代码,生成目标文件
@@ -16,6 +16,7 @@ linux下自带的链接工具。
 虚拟机
 
 ## Usage guide
+### Linux
 编译和运行的方法
 ``` sh
 # 清空所有的生成文件
@@ -27,6 +28,17 @@ make build
 # 运行bochs虚拟机，执行OS.img中的代码
 make run
 ```
+### Windows
+下载本repo并切换到`windows`分支。  
+采用git客户端或于命令行输入。  
+``` sh
+$ git checkout windows
+```
+若报错，请先输入
+``` sh
+$ git fetch --all
+```
+并再次输入以上的命令行。  
 # 混编方式
 ## 引导程序
 引导程序如`loader.asm`所示．　　
