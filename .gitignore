@@ -1,2 +1,6 @@
 bochsout.log
 OS.img
+*.o
+*.bin
+*.gch
+bochsout.txt
