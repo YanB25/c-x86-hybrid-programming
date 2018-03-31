@@ -6,4 +6,4 @@
 ## 使用方法
 
 cd 到当前目录下
-运行`.\make.exe auto`即可
+运行`.\bin\make.exe auto`即可
