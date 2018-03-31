@@ -3,6 +3,7 @@
 关于完善这份文档见contribution guide。  
 [toc]
 关于Windows下的混编方法，见下Windows小节  
+**如果您使用这份模板出现了任何问题，欢迎点`Issue`进行提问**
 ## 工具链
 - GCC  
 用于编译C代码,生成目标文件
